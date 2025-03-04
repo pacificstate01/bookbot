@@ -1,9 +1,16 @@
+import sys
+if len(sys.argv) != 2:
+    print("Usage: python3 main.py <path_to_book>")
+    sys.exit(1)
+
+book_path = sys.argv[1]
+
 def main():
-    with open("books/frankenstein.txt") as f:
+    with open(book_path, "r") as f:
         file_contents = f.read()
 
     words = file_contents.split()
-    print("--- Begin report of books/frankenstein.txt ---")
+    print(f"--- Begin report of {book_path} ---")
     print(len(words), "words found in the document")
     countchar(file_contents)
     print("--- End report ---")
@@ -30,8 +37,7 @@ def countchar(file_contents):
     for i in chardic:
         letter = i["char"]
         cont = i["num"]
-        print(f"The '{letter}' character was found {cont} times")
-
+        print(f"{letter}: {cont}")
 if __name__ == "__main__":
     main()
     
